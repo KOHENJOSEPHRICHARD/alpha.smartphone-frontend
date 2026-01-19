@@ -56,6 +56,30 @@ export function AdminSidebar() {
     }
   }, [])
 
+  // Ensure sidebar is visible on desktop by default and sync on resize
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const mq = window.matchMedia("(min-width: 768px)")
+    const handle = (e: MediaQueryListEvent | MediaQueryList) => {
+      setIsOpen(Boolean((e as any).matches))
+    }
+    // set initial
+    setIsOpen(mq.matches)
+    // add listener
+    if (typeof mq.addEventListener === "function") {
+      mq.addEventListener("change", handle)
+    } else if (typeof mq.addListener === "function") {
+      mq.addListener(handle)
+    }
+    return () => {
+      if (typeof mq.removeEventListener === "function") {
+        mq.removeEventListener("change", handle)
+      } else if (typeof mq.removeListener === "function") {
+        mq.removeListener(handle)
+      }
+    }
+  }, [])
+
   const handleLogout = () => {
     // Clear all auth data
     apiClient.clearToken()

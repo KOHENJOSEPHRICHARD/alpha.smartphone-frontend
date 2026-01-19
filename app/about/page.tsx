@@ -103,7 +103,7 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold">Our Story</h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Founded in 2016, Alpha.SmartPhone began with a simple mission: to make premium smartphones accessible to
+                Founded in 2026, Alpha.SmartPhone began with a simple mission: to make premium smartphones accessible to
                 everyone. What started as a small operation has grown into a trusted platform serving thousands of
                 satisfied customers.
               </p>
