@@ -1,5 +1,7 @@
 "use client"
 
+export const dynamic = "force-dynamic"
+
 import { useState, useMemo, useEffect } from "react"
 import { PhoneFilters } from "@/components/phone-filters"
 import { PhoneCard } from "@/components/phone-card"
