@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Search, X, SlidersHorizontal } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { motion, AnimatePresence } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 interface PhoneFiltersProps {
   searchQuery: string
@@ -33,6 +33,15 @@ export function PhoneFilters({
   onReset,
 }: PhoneFiltersProps) {
   const [showFilters, setShowFilters] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const check = () => setIsDesktop(window.innerWidth >= 768)
+    check()
+    window.addEventListener("resize", check)
+    return () => window.removeEventListener("resize", check)
+  }, [])
 
   return (
     <div className="space-y-4">
@@ -69,7 +78,7 @@ export function PhoneFilters({
 
       {/* Filters */}
       <AnimatePresence>
-        {(showFilters || (typeof window !== "undefined" && window.innerWidth >= 768)) && (
+        {(showFilters || isDesktop) && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
