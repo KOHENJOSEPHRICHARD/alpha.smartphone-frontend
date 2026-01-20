@@ -69,7 +69,7 @@ export function PhoneFilters({
 
       {/* Filters */}
       <AnimatePresence>
-        {(showFilters || window.innerWidth >= 768) && (
+        {(showFilters || (typeof window !== "undefined" && window.innerWidth >= 768)) && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
